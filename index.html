@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 100%;
+            background-color: aquamarine;
+            margin: 5px auto;
+        }
+        
+        .ssk_div {
+            /* height: auto; */
+            text-align: center;
+        }
+        
+        #ssk {
+            height: 21px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+            margin: 0 auto;
+            padding: 0;
+        }
+        
+        ul {
+            width: 300px;
+            text-align: center;
+        }
+        
+        .ssk_li {
+            /* position: relative;
+            z-index: 999999; */
+            height: 21px;
+            width: 300px;
+            border: 1px solid red;
+            box-sizing: border-box;
+            text-align: left;
+            border-bottom: 0;
+        }
+        
+        .ssk_li:nth-last-child(1) {
+            border-bottom: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div><input type="button" value="anniu" onclick="fn_click()"> </div>
+    <div class="ssk_div">
+        <input type="text" name="" id="ssk" placeholder="请输入搜索内容">
+        <ul class="ssk_ul">
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+            <li class="ssk_li">123</li>
+        </ul>
+    </div>
+    <div></div>
+</body>
+<script src="../pin/js/jquery-3.1.1.min.js"></script>
+<script>
+    // var ssk = document.querySelector('#ssk');
+    // var timer = null;
+    // ssk.onkeyup = function(e) {
+    //     var val = this.value.trim();
+    //     clearInterval(timer);
+    //     timer = setInterval(() => {
+    //         var html = '';
+    //         if (!(val == '' || !val || val == undefined)) {
+    //             for (let index = 0; index < val.length; index++) {
+    //                 html += '<li class="ssk_li">' + val + '_' + index + '</li>';
+    //             }
+    //         }
+    //         document.querySelector('.ssk_ul').innerHTML = html;
+    //     }, 500);
+    //     e.stopPropagation();
+    //     e.cancelBubble = true;
+    // }
+</script>
+<script>
+    // $(function() {
+    //     $.ajaxPrefilter({
+    //         url: 'https://www.hao123.com/',
+    //         type: 'get',
+    //         success: function(data) {
+    //             console.log(data);
+    //         }
+    //     })
+    // })
+
+    // function fn_click() {
+    //     var s = document.createElement('script');
+    //     s.src = 'http://www.baidu.com?cb=fff';
+    //     document.body.appendChild(s);
+    //     s.onload = function() {
+    //         document.body.removeChild(s);
+    //     }
+    // }
+    $(function() {
+        $(document).ajaxStart(function() {
+            console.log('kaishi');
+        }).ajaxComplete(function() {
+            console.log('wancheng');
+        })
+
+    })
+
+    function fn_click() {
+        // jsonp({
+        //     url: 'https://wis.qq.com/city/getcode?source=pc&province=广东省&city=深圳市&county=&_=1591620524082',
+        //     success: (data) => {
+        //         console.log(data);
+        //     }
+        // })
+        $.ajax({
+            url: 'https://wis.qq.com/city/getcode?source=pc&province=广东省&city=深圳市&county=&_=1591620524082',
+            dataType: 'jsonp',
+            jsonp: 'cb',
+            jsonpCallback: 'fnName',
+            success: function(data) {
+                console.log(data);
+
+            }
+        })
+    }
+
+    // function jsonp(obj) {
+    //     var s = document.createElement('script');
+    //     var fnName = 'jsonp_' + Math.random().toString().replace('.', '');
+    //     if (obj.url.indexOf('?') > -1) {
+    //         s.src = obj.url + '&cb=' + fnName;
+    //     } else {
+    //         s.src = obj.url + '?cb=' + fnName;
+    //     }
+    //     window[fnName] = obj.success;
+    //     document.body.appendChild(s);
+    //     s.onload = () => {
+    //         document.body.removeChild(s);
+    //     }
+    // }
+</script>
+
+</html>
